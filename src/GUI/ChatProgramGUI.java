@@ -4,6 +4,7 @@ package GUI;
 
 import After.Client;
 import After.Login;
+import Photo.DeletePhoto;
 
 import javax.swing.*;
 import java.awt.*;
@@ -36,6 +37,7 @@ public class ChatProgramGUI {
     private ListenGUI listen;
 
     public ChatProgramGUI(Login login) throws SQLException, IOException {
+        DeletePhoto.Delete();
         this.login = login;
         this.client = new Client(login.name);
         this.listen = new ListenGUI(login.name);

@@ -5,10 +5,12 @@ package After;
 import java.sql.*;
 
 public class AccountCreate {
+    private String faceToken;
     private String name;
     private String password;
 
-    public AccountCreate(String name, String password){
+    public AccountCreate(String faceToken, String name, String password){
+        this.faceToken = faceToken;
         this.name = name;
         this.password = password;
         try{
@@ -30,7 +32,7 @@ public class AccountCreate {
 
     //创建账号
     private boolean account_create(){
-        String sql_create = "insert into users_list values(null, ?, ?)";
+        String sql_create = "insert into users_list values(?, ?, ?)";
         //是否存在该账号
         boolean exist = false;
 
@@ -50,8 +52,9 @@ public class AccountCreate {
 
             //账号不存在时进行创建
             if(!exist){
-                create_account.setString(1, this.name);
-                create_account.setString(2, this.password);
+                create_account.setString(1, this.faceToken);
+                create_account.setString(2, this.name);
+                create_account.setString(3, this.password);
                 create_account.execute();
 
                 //创建好友列表

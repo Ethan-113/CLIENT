@@ -4,15 +4,19 @@ package GUI;
 
 import After.AccountCreate;
 import After.Login;
+import Face.FaceUtil;
+import Photo.WebcamViewer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
 public class LoginGUI extends JFrame {
+    private String path = "pic\\zy.jpg";
     private JTextField usernameField;
     private JPasswordField passwordField;
 
@@ -74,7 +78,20 @@ public class LoginGUI extends JFrame {
                 // 执行注册操作
                 String username = usernameField.getText();
                 String password = new String(passwordField.getPassword());
-                AccountCreate accountCreate = new AccountCreate(username, password);
+
+                //获取人脸token
+                String faceToken;
+                File file = new File(path);
+
+                try {
+                    faceToken = FaceUtil.detect(file);
+                    FaceUtil.addFace(faceToken);
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                //注册
+                AccountCreate accountCreate = new AccountCreate(faceToken, username, password);
                 boolean success = accountCreate.createSignal();
                 if(success) {
                     JOptionPane.showMessageDialog(LoginGUI.this, "注册成功");
@@ -111,4 +128,5 @@ public class LoginGUI extends JFrame {
             }
         });
     }
+
 }

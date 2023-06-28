@@ -40,7 +40,8 @@ public class ReceiveThread extends Thread{
                 }
             }
         } catch (IOException e) {
-            System.out.println("与服务器断开连接");
+            JOptionPane.showMessageDialog(window.frame, "与服务器断开连接", "系统信息", JOptionPane.WARNING_MESSAGE);
+            window.frame.dispose();
         }
     }
 
