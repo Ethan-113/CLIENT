@@ -183,7 +183,7 @@ public class ChatProgramGUI {
         chatFrame.getContentPane().add(sendButton, BorderLayout.EAST);
 
         //如果窗口关闭，就将目标移出if_close，说明该聊天窗口不再打开
-        frame.addWindowListener(new WindowAdapter() {
+        chatFrame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 if_close.remove(friend);

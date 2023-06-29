@@ -28,9 +28,6 @@ public class Show {
         if (faceToken != null) {
             for (String Token : tokens.keySet()) {
                 boolean res = FaceUtil.compareFace(Token, faceToken);
-                System.out.println("目标token:  " + Token);
-                System.out.println("当前name" + tokens.get(Token).get(0));
-                System.out.println("当前是否" + res);
                 if (res) {
                     //找到该人
                     flag = true;
