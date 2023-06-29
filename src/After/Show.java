@@ -39,6 +39,7 @@ public class Show {
             //没找到用户，注册或者账号密码登录
             if (!flag) {
                 LoginGUI.createLoginGUI();
+
             }
 
             //找到用户，直接登录
